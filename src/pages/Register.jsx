@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import api from "@/api/axios";
 import { toast } from "sonner";
 import { Navigate, useNavigate } from "react-router-dom";
+import useAuth from "@/Hooks/useAuth";
 
 const formSchema = z
   .object({
@@ -37,9 +38,18 @@ const formSchema = z
       path: ["confirmPassword"],
     },
   );
+   
 
 const Register = () => {
   const Navigate = useNavigate();
+
+  const {token} = useAuth();
+    if(token){
+        return(
+          <Navigate to="/dashboard" />
+        )
+      }
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
