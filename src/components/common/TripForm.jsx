@@ -23,7 +23,7 @@ const durationSchema = z.object({
 });
 
 const formSchema = z.object({
-  title: z.string().min(5, "Title must be at least 5 characters"),
+  title: z.string().min(5, "Title must be at least 5 characters").transform((val) => val.toUpperCase()),
   description: z.string().min(10, "Description must be at least 10 characters"),
   price: z.coerce.number().positive("Price must be a positive number"),
   duration: durationSchema,
@@ -78,7 +78,7 @@ const TripForm = ({tripData}) => {
   const onEdit = async (data) => {
     console.log(data)
     try{
-      const response = await api.put(`/trips/${tripData._id}`,data);
+      const response = await api.patch(`/trips/${tripData._id}`,data);
       console.log(response);
       if(response.status === 200){
         toast.success("Trip Updated successfully!");
