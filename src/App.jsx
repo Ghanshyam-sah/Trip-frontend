@@ -13,6 +13,7 @@ import Bookings from './pages/bookings/bookings'
 import EditTrip from './pages/trip/EditTrip'
 import Trips from './pages/trip/Trips'
 import ViewTrips from './pages/clients/ViewTrips'
+import Mybookings from './pages/clients/Mybookings'
 
 const App = () => {
 
@@ -68,6 +69,7 @@ const { token, logout } = useAuth();
           <Route path="/bookings" element={<Bookings />}/>
 
           <Route path='/client/trips' element={<ViewTrips/>}/>
+          <Route path='/client/bookings' element={<Mybookings/>}/>
 
           </Route>
 
