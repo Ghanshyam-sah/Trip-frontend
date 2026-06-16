@@ -4,6 +4,7 @@ import Hero from '../components/LandingComponents/Hero'
 import Features from '../components/LandingComponents/Features'
 import FAQ from '@/components/LandingComponents/FAQ'
 import { Contact } from '@/components/LandingComponents/Contact'
+import Footer from '@/components/common/Footer'
 
 const Landing = () => {
   return (
@@ -14,6 +15,7 @@ const Landing = () => {
       <Features />
       <Contact />
       <FAQ />
+      <Footer/>
     </div>
   )
 }

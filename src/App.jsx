@@ -15,6 +15,8 @@ import Trips from './pages/trip/Trips'
 import ViewTrips from './pages/clients/ViewTrips'
 import Mybookings from './pages/clients/Mybookings'
 import ContactList from './pages/contacts/ContactList'
+import Blogs from './pages/clients/Blogs'
+import AddBlog from './pages/clients/AddBlog'
 
 const App = () => {
 
@@ -75,6 +77,8 @@ const { token, logout } = useAuth();
           <Route path='/client/trips' element={<ViewTrips/>}/>
           <Route path='/client/bookings' element={<Mybookings/>}/>
           <Route path="/client/dashboard" element={<Dashboard/>}/>
+          <Route path="/client/blogs" element={<Blogs/>}/>
+          <Route path="/client/blogs/add" element={<AddBlog/>}/>
 
           </Route>
 

@@ -51,7 +51,7 @@ export function Contact() {
   }
 
   return (
-    <section className="bg-blue-50 py-16 md:py-24 lg:py-32">
+    <section id='contact' className="bg-blue-50 py-16 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center md:mb-16">
@@ -75,7 +75,7 @@ export function Contact() {
               </div>
               <div className="flex flex-col gap-1">
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-sm text-muted-foreground">hello@example.com</p>
+                <p className="text-sm text-muted-foreground">tripsathi@gmail.com</p>
               </div>
             </div>
 
@@ -85,7 +85,7 @@ export function Contact() {
               </div>
               <div className="flex flex-col gap-1">
                 <h3 className="font-semibold text-foreground">Phone</h3>
-                <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p>
+                <p className="text-sm text-muted-foreground">+977 9817368240</p>
               </div>
             </div>
 
@@ -96,9 +96,9 @@ export function Contact() {
               <div className="flex flex-col gap-1">
                 <h3 className="font-semibold text-foreground">Address</h3>
                 <p className="text-sm text-muted-foreground">
-                  123 Main Street
+                  Traffic Chowk
                   <br />
-                  City, State 12345
+                  Biratnagar, Nepal
                 </p>
               </div>
             </div>
@@ -135,7 +135,7 @@ export function Contact() {
                 htmlFor="email"
                 className="text-sm font-medium text-foreground"
               >
-                Email
+              Email
               </label>
               <Input
                 id="email"

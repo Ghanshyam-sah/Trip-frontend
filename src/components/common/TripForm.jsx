@@ -16,6 +16,8 @@ import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import api from "@/api/axios";
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 const durationSchema = z.object({
   days: z.coerce.number().positive("Days must be a positive numbers"),
@@ -36,6 +38,16 @@ const formSchema = z.object({
 });
 
 const TripForm = ({tripData}) => {
+
+   // Create a Cloudinary instance and set your cloud name.
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'dqh6d7scu'
+    }
+  });
+
+  // cld.image returns a CloudinaryImage with the configuration set.
+  const myImage = cld.image('sample');
 
   const navigate = useNavigate();
 
@@ -92,6 +104,33 @@ const TripForm = ({tripData}) => {
 
     }
   };
+
+  const handleImageUpload = async(e) =>{
+    const file = e.target.files[0];
+
+    if(!file){
+      toast.error("No files selected.");
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "trip_sathi");
+    formData.append("cloud_name", "dqh6d7scu");
+
+
+    const response = await fetch("https://api.cloudinary.com/v1_1/dqh6d7scu/image/upload",{
+      method: "POST",
+      body: formData
+    })
+
+    const uploadedImage = await response.json();
+    console.log(uploadedImage);
+
+    if(uploadedImage.url){
+      form.setValue("imageUrl",uploadedImage.url);
+    }
+
+  }
 
 
   return (
@@ -334,8 +373,11 @@ const TripForm = ({tripData}) => {
               )}
             />
               </div>
+          <Input type="file" onChange={handleImageUpload} />
+                <AdvancedImage  />
             </CardContent>
           </Card>
+
         </CardContent>
       </Card>
       <div className="float-right">

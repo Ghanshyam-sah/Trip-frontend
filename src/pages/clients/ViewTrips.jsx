@@ -66,10 +66,10 @@ const ViewTrips = () => {
   }
 
   return (
-    <main className="px-20 py-8 ">
-      <h1 className="text-3xl font-bold">Available Trips Package</h1>
+    <main className="px-4 md:px-10 lg:px-20 py-4 md:py-8 ">
+      <h1 className="text-2xl md:text-3xl font-bold">Available Trips Package</h1>
 
-      <section className="mt-8 grid grid-cols-3 gap-6 ">
+      <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {data && data.length == 0 ? (
           <div>No trips available at the momont</div>
         ) : (
@@ -77,11 +77,11 @@ const ViewTrips = () => {
             return (
               <Card key={trip._id}>
                 <CardHeader className={"border-b"}>
-                  <div>
+                  <div className="mb-2 h-72 overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1527206363095-ca2f054128b0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src={trip.imageUrl}
                       alt="trip image"
-                      className="rounded-md"
+                      className="rounded-md h-full flex justify-center items-center"
                     ></img>
                   </div>
                   <CardTitle>{trip.title}</CardTitle>

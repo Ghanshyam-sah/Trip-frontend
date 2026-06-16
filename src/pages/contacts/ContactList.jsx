@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardAction,
@@ -21,10 +21,14 @@ import {
 import useApi from "@/Hooks/useApi";
 import { formatDate } from "@/lib/formatter";
 import { Button } from "@/components/ui/button";
+import api from "@/api/axios";
+import { toast } from "sonner";
 
 const ContactList = () => {
 
-    const {data, error, loading} = useApi("/contacts");
+    const [dependency, setDependency] = useState(0)
+
+    const {data, error, loading} = useApi("/contacts",{},[dependency]);
 
 
     const badgeColor = (status) =>{
@@ -39,6 +43,26 @@ const ContactList = () => {
     if(loading){
         return <div>Loading...</div>
     }
+
+    const handleStatusChange = async(contactId, newStatus)=>{
+
+        try {
+      const response = await api.put(`/contacts/${contactId}`, {status: newStatus});
+      console.log(response);
+
+      if (response.status === 200) {
+        toast.success("Contact status updated!");
+        setDependency(prev => prev + 1)
+      } else {
+        toast.error("Contact status failed to update. Please try again.");
+      }
+    } catch (error) {
+      console.error("status update failed:", error);
+      toast.error("Contact status failed. Please try again.");
+    }
+  };
+
+    
 
 
   return (
@@ -81,11 +105,13 @@ const ContactList = () => {
                             {
 
                                 contact.status === "pending" ?
-                                <Button>
+                                <Button variant="outline" size="sm" onClick={()=>{handleStatusChange(contact._id,"resolved")}}>
                                     Mark as resolved
                                 </Button>
                                 :
-                                "-"
+                               <Button variant="outline" size="sm" onClick={()=>{handleStatusChange(contact._id,"pending")}}>
+                                    Mark as pending
+                                </Button>
 
                             }
                         </TableCell>

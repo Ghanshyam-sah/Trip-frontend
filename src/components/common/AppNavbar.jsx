@@ -16,17 +16,25 @@ const AppNavbar = () => {
   const decodedToken = token ? jwtDecode(token) : null;
 
   return (
-    <header className="px-20 py-6 flex items-center justify-between bg-transparent">
+    <header className="sticky top-0 z-50 px-4 md:px-10 md:px-20 py-3 md:py-6 flex items-center justify-between bg-white">
       {/* left part */}
 
-      <div>
-        <h1 className="text-4xl font-semibold ">GlobalTour</h1>
+      <div className="flex justify-center items-center">
+        <img
+          src="/logo.png"
+          alt="logo"
+          className="w-25 h-20 rounded-full object-cover"
+        />
+        <h1 className="text-2xl md:text-4xl font-bold">
+          Trip <span className="text-orange-500">Sathi</span>
+        </h1>
+        {/* <h1 className='text-4xl font-semibold '>Trip Sathi</h1> */}
       </div>
 
       {/* right part */}
 
       <div className="flex items-center gap-15">
-        <nav className="space-x-5 text-lg text-gray-700 font-medium [&>a]:hover:text-blue-600 [&>a]:hover:underline">
+        <nav className="hidden md:block space-x-5 text-lg text-gray-700 font-medium [&>a]:hover:text-blue-600 [&>a]:hover:underline">
           {decodedToken.role === "admin" ? (
             <>
               <a href="/dashboard">Dashboard</a>
