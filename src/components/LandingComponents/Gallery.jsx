@@ -94,7 +94,7 @@ export function Gallery() {
           </div>
 
           {/* Thumbnail grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-1 col-span-1 gap-4">
+          <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3  gap-4">
             {images.map((image, index) => (
               <button
                 key={index}
