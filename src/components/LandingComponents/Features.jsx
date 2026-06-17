@@ -27,7 +27,7 @@ const Features = () => {
     }
   ]
   return (
-    <section className='px-20 py-16'>
+    <section className='px-4 md:px-10 lg:px-20 py-16'>
 
         {/* headings */}
         <div>
@@ -35,7 +35,7 @@ const Features = () => {
         </div>
 
         {/* content  */}
-        <div className='grid grid-cols-4 gap-4'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
 
           {
             featuresData.map((feature, index) =>{

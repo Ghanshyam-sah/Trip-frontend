@@ -16,7 +16,7 @@ const AppNavbar = () => {
   const decodedToken = token ? jwtDecode(token) : null;
 
   return (
-    <header className="sticky top-0 z-50 px-4 md:px-10 md:px-20 py-3 md:py-6 flex items-center justify-between bg-white">
+    <header className="sticky top-0 z-50 px-4 md:px-10 lg:px-20 py-3 md:py-6 flex items-center justify-between bg-white">
       {/* left part */}
 
       <div className="flex justify-center items-center">

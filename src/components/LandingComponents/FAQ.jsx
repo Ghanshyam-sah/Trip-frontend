@@ -8,7 +8,7 @@ import {
 
 const FAQ = () => {
   return (
-    <section className="px-20 py-20 w-1/2 mx-auto ">
+    <section className="px-0 md:px-10 lg:px-20 py-16 w-1/2 mx-auto ">
       {/* headings  */}
       <div>
         <h2 className="text-5xl font-bold text-center mb-10">

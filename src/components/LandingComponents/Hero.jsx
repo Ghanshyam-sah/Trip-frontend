@@ -4,21 +4,21 @@ import CustomButton from '../common/CustomButton'
 
 const Hero = () => {
   return (
-    <section className='relative h-[88dvh] overflow-hidden flex items-center justify-center'>
+    <section className='relative  md:h-[88dvh] overflow-hidden flex items-center justify-center'>
         <div>
             <img src="/hero.png" alt="GlobalTrip Bgimage" absolute w-full h-full object-cover />
         </div>
 
-        <div className='h-[88dvh] w-full  bg-black absolute opacity-65 '>
+        <div className='h-[30dvh] md:h-[88dvh] w-full  bg-black absolute opacity-65 '>
 
         </div>
 
         {/* main content */}
-        <div  className='absolute w-1/2 text-white text-center' >
+        <div  className='absolute w-full md:w-1/2 text-white text-center ' >
           
         
-            <h1 className='text-5xl font-bold  mb-6'><span className="text-8xl font-['Alex_Brush',cursive] text-amber-400">D</span>iscover Your Next Adventure</h1>
-            <p className='text-2xl font-medium  mb-6'>
+            <h1 className='text-2xl md:text-5xl font-bold  md:mb-6'><span className="text-8xl font-['Alex_Brush',cursive] text-amber-400">D</span>iscover Your Next Adventure</h1>
+            <p className='text-sm md:text-2xl font-medium mb-2 md:mb-6'>
               <span className="">Uncover</span> the world's most breathtaking <span className=''>destinations</span> with our curated travel experiences. <span className=''>From</span> hidden gems to iconc landmarks, we bring you unforgetable journeys that inspire and capative. Start yor adventure <span className=''>today!!</span>
             </p>
 
