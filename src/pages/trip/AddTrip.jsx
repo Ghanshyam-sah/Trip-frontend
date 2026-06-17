@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 const AddTrip = () => {
   return (
 
-    <Card className="w-2/5 mx-auto my-10 ">
+    <Card className="md:w-2/5 mx-auto my-10 ">
         <CardHeader>
 
             <CardTitle>

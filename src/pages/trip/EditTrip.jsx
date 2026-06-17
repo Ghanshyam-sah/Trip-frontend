@@ -24,7 +24,7 @@ const EditTrip = () => {
     }
 
   return (
-    <Card className="w-2/5 mx-auto my-10 ">
+    <Card className="md:w-2/5 mx-auto my-10 ">
         <CardHeader>
 
             <CardTitle>

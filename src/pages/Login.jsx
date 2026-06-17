@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -20,6 +21,7 @@ import useAuth from "@/Hooks/useAuth";
 import { toast } from "sonner";
 import api from "@/api/axios";
 import { jwtDecode } from "jwt-decode";
+import { Eye, EyeOff } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email().min(5, "Email must be at least 5 charecters"),
@@ -27,6 +29,8 @@ const formSchema = z.object({
 });
 
 const Login = () => {
+
+  const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const { token, login } = useAuth();
@@ -71,11 +75,15 @@ const Login = () => {
         }
     }
 
+
+  
+    
+
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Card className="w-1/4 mx-auto mt-30  ">
+          <Card className=" md:w-1/4 mx-auto mt-45 md:mt-30  ">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl text-shadow-sky-500">Login to WorldTrip</CardTitle>
+              <CardTitle className="text-3xl text-shadow-sky-500">Login to Trip Sathi</CardTitle>
               <CardDescription>Enter your details to get started</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -99,22 +107,37 @@ const Login = () => {
                 )}
               />
               <Controller
-                name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-                    <Input type="password" placeholder="Minimum 8 characters"
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid} />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-              
+      name="password"
+      control={form.control}
+      render={({ field, fieldState }) => (
+        <Field data-invalid={fieldState.invalid}>
+          <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+
+          <div className="relative">
+            <Input
+              {...field}
+              id={field.name}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your Password"
+              aria-invalid={fieldState.invalid}
+              className="pr-10"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+
+          {fieldState.invalid && (
+            <FieldError errors={[fieldState.error]} />
+          )}
+        </Field>
+      )}
+    />
             
     
             </CardContent>
@@ -130,6 +153,7 @@ const Login = () => {
           </Card>
         </form>
   )
+
 
 };
 

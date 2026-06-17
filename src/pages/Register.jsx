@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -19,6 +19,7 @@ import api from "@/api/axios";
 import { toast } from "sonner";
 import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "@/Hooks/useAuth";
+import { Eye, EyeOff } from "lucide-react";
 
 const formSchema = z
   .object({
@@ -42,6 +43,7 @@ const formSchema = z
 
 const Register = () => {
   const Navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {token} = useAuth();
     if(token){
@@ -85,10 +87,10 @@ const Register = () => {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <Card className="w-1/4 mx-auto mt-30  ">
+      <Card className="md:w-1/4 mx-auto mt-30  ">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl text-shadow-sky-500">
-            Register to WorldTrip
+            Register to Trip Sathi
           </CardTitle>
           <CardDescription>Enter your details to get started</CardDescription>
         </CardHeader>
@@ -132,26 +134,71 @@ const Register = () => {
               </Field>
             )}
           />
-          <Controller
-            name="password"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+         <Controller
+      name="password"
+      control={form.control}
+      render={({ field, fieldState }) => (
+        <Field data-invalid={fieldState.invalid}>
+          <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+
+          <div className="relative">
+            <Input
+              {...field}
+              id={field.name}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              aria-invalid={fieldState.invalid}
+              className="pr-10"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+
+          {fieldState.invalid && (
+            <FieldError errors={[fieldState.error]} />
+          )}
+        </Field>
+      )}
+    />
+    <Controller
+          name="confirmPassword"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Confirm Password</FieldLabel>
+    
+              <div className="relative">
                 <Input
-                  type="password"
-                  placeholder="Minimum 8 characters"
                   {...field}
                   id={field.name}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="same as above password"
                   aria-invalid={fieldState.invalid}
+                  className="pr-10"
                 />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
+    
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+    
+              {fieldState.invalid && (
+                <FieldError errors={[fieldState.error]} />
+              )}
+            </Field>
+          )}
+        />
+          {/* <Controller
             name="confirmPassword"
             control={form.control}
             render={({ field, fieldState }) => (
@@ -169,7 +216,7 @@ const Register = () => {
                 )}
               </Field>
             )}
-          />
+          /> */}
         </CardContent>
 
         <CardFooter className={"block"}>
